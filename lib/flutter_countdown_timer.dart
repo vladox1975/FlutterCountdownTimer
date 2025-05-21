@@ -25,6 +25,9 @@ class CountdownTimer extends StatefulWidget {
   ///The end time of the countdown.
   final int? endTime;
 
+  final String? labelDays;
+  final String? labelDay;  
+
   CountdownTimer({
     Key? key,
     this.endWidget = const Center(
@@ -35,6 +38,8 @@ class CountdownTimer extends StatefulWidget {
     this.textStyle,
     this.endTime,
     this.onEnd,
+    this.labelDays = 'Days',
+    this.labelDay = 'Day',  
   })  : assert(endTime != null || controller != null),
         super(key: key);
 
@@ -98,7 +103,8 @@ class _CountDownState extends State<CountdownTimer> {
 
     String value = '';
     if (time.days != null) {
-      value = '$value${time.days} days ';
+      var labelday = time.days == 1 ? labelDay : labelDays;
+      value = '$value${time.days} $labelday ';
     }
 
     return Text(
